@@ -1,0 +1,93 @@
+/* خلفية الموقع */
+body {
+    margin: 0;
+    padding: 0;
+    background: #0a0f1f;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e0e0e0;
+}
+
+/* عنوان الموقع */
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 38px;
+    color: #00eaff;
+    text-shadow: 0 0 15px #00eaff;
+}
+
+/* صندوق الإدخال */
+.input-box {
+    width: 60%;
+    margin: 30px auto;
+    background: #11182f;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+    border: 1px solid #00eaff;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: #0d1326;
+    color: #fff;
+    border: 1px solid #00eaff;
+}
+
+/* زر الفحص */
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 20px;
+    background: #00eaff;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00c4d6;
+    box-shadow: 0 0 15px #00eaff;
+}
+
+/* بطاقة النتائج */
+.result-card {
+    width: 70%;
+    margin: 40px auto;
+    background: #11182f;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #00eaff;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+}
+
+/* نصوص النتائج */
+.result-card p {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+/* ألوان الحالات */
+.safe {
+    color: #2ecc71;
+    text-shadow: 0 0 10px #2ecc71;
+}
+
+.warning {
+    color: #f1c40f;
+    text-shadow: 0 0 10px #f1c40f;
+}
+
+.danger {
+    color: #e74c3c;
+    text-shadow: 0 0 10px #e74c3c;
+}
