@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+requests
+python-whois
+beautifulsoup4
+lxml
