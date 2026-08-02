@@ -1,46 +1,72 @@
-/* خلفية الموقع */
+/* خلفية Cyber Security */
 body {
     margin: 0;
     padding: 0;
-    background: #0a0f1f;
     font-family: 'Segoe UI', sans-serif;
     color: #e0e0e0;
+    background: #05080f;
+    overflow-x: hidden;
 }
 
-/* عنوان الموقع */
-h1 {
-    text-align: center;
-    margin-top: 40px;
-    font-size: 38px;
-    color: #00eaff;
-    text-shadow: 0 0 15px #00eaff;
+/* خلفية متحركة */
+.cyber-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, rgba(0,0,0,0.9) 70%);
+    animation: pulse 6s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% { filter: blur(0px); }
+    100% { filter: blur(4px); }
 }
 
 /* صندوق الإدخال */
-.input-box {
-    width: 60%;
-    margin: 30px auto;
-    background: #11182f;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+.center-box {
+    width: 90%;
+    max-width: 550px;
+    margin: 120px auto;
+    background: rgba(10, 20, 40, 0.8);
+    padding: 35px;
+    border-radius: 15px;
     border: 1px solid #00eaff;
+    box-shadow: 0 0 25px rgba(0,255,255,0.3);
+    text-align: center;
 }
 
-.input-box input {
+/* العنوان */
+.title {
+    font-size: 36px;
+    color: #00eaff;
+    text-shadow: 0 0 15px #00eaff;
+    margin-bottom: 10px;
+}
+
+/* النص تحت العنوان */
+.subtitle {
+    font-size: 18px;
+    color: #bcd;
+    margin-bottom: 25px;
+}
+
+/* الإدخال */
+.input-area input {
     width: 100%;
     padding: 15px;
     font-size: 18px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    background: #0d1326;
-    color: #fff;
+    border-radius: 10px;
     border: 1px solid #00eaff;
+    background: #0a1528;
+    color: #fff;
+    outline: none;
 }
 
 /* زر الفحص */
-button {
+.input-area button {
     width: 100%;
     margin-top: 20px;
     padding: 15px;
@@ -48,46 +74,13 @@ button {
     background: #00eaff;
     color: #000;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
 }
 
-button:hover {
+.input-area button:hover {
     background: #00c4d6;
-    box-shadow: 0 0 15px #00eaff;
-}
-
-/* بطاقة النتائج */
-.result-card {
-    width: 70%;
-    margin: 40px auto;
-    background: #11182f;
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid #00eaff;
-    box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
-}
-
-/* نصوص النتائج */
-.result-card p {
-    font-size: 20px;
-    margin: 10px 0;
-}
-
-/* ألوان الحالات */
-.safe {
-    color: #2ecc71;
-    text-shadow: 0 0 10px #2ecc71;
-}
-
-.warning {
-    color: #f1c40f;
-    text-shadow: 0 0 10px #f1c40f;
-}
-
-.danger {
-    color: #e74c3c;
-    text-shadow: 0 0 10px #e74c3c;
+    box-shadow: 0 0 20px #00eaff;
 }
