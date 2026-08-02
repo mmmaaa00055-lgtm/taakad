@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>نتيجة الفحص</title>
+    <style>
+        body {
+            background: #f5f6fa;
+            font-family: "Tahoma", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .section {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-right: 5px solid #3498db;
+        }
+
+        .section h3 {
+            margin: 0 0 10px 0;
+            color: #3498db;
+        }
+
+        .status-safe {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .status-warning {
+            color: #f1c40f;
+            font-weight: bold;
+        }
+
+        .status-danger {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .back-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔍 نتيجة فحص الرابط</h2>
+
+    <div id="result"></div>
+
+    <a href="/" class="back-btn">رجوع</a>
+</div>
+
+<script>
+    // قراءة الرابط من الـ URL
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get("url");
+
+    // جلب النتيجة من السيرفر
+    fetch(`/check?url=${url}`)
+        .then(res => res.json())
+        .then(data => {
+            let statusClass =
+                data.status === "آمن" ? "status-safe" :
+                data.status === "مشبوه" ? "status-warning" :
+                "status-danger";
+
+            document.getElementById("result").innerHTML = `
+                <div class="section">
+                    <h3>🔗 الرابط</h3>
+                    <p>${data.url}</p>
+                </div>
+
+                <div class="section">
+                    <h3>📊 نسبة الأمان</h3>
+                    <p class="${statusClass}">${data.score}% — ${data.status}</p>
+                </div>
+
+                <div class="section">
+                    <h3>🏛 السجل التجاري السعودي</h3>
+                    <p>${translateCR(data.commercial_record)}</p>
+                </div>
+
+                <div class="section">
+                    <h3>🛡 معروف</h3>
+                    <p>${translateMarouf(data.marouf)}</p>
+                </div>
+
+                <div class="section">
+                    <h3>⚠ البلاغات الحكومية</h3>
+                    <p>${translateReports(data.reports)}</p>
+                </div>
+
+                <div class="section">
+                    <h3>🌍 نطاق السجل التجاري</h3>
+                    <p>${translateRegistry(data.registry)}</p>
+                </div>
+            `;
+        });
+
+    // تحويل النصوص إلى عربية جميلة
+    function translateCR(v) {
+        if (v === "valid") return "✔ السجل التجاري موجود";
+        if (v === "not_found") return "❌ لا يوجد سجل تجاري";
+        return "⚠ تعذر التحقق";
+    }
+
+    function translateMarouf(v) {
+        if (v === "registered") return "✔ المتجر مسجل في معروف";
+        if (v === "not_registered") return "❌ المتجر غير مسجل";
+        return "⚠ تعذر التحقق";
+    }
+
+    function translateReports(v) {
+        if (v === "has_reports") return "❌ توجد بلاغات وتحذيرات على المتجر";
+        if (v === "clean") return "✔ لا توجد بلاغات";
+        return "⚠ تعذر التحقق";
+    }
+
+    function translateRegistry(v) {
+        if (v === "saudi") return "✔ نطاق سعودي رسمي (.sa)";
+        if (v === "global") return "🌍 نطاق عالمي";
+        return "⚠ تعذر التحقق";
+    }
+</script>
+
+</body>
+</html>
