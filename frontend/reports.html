@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>سجل البلاغات</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background: #f0f2f5;
+            direction: rtl;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .report-card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .desc {
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>سجل البلاغات</h2>
+
+    <div id="reports"></div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const reportsData = params.get("reports");
+
+    let reports = [];
+
+    try {
+        reports = JSON.parse(reportsData);
+    } catch {
+        reports = [];
+    }
+
+    const container = document.getElementById("reports");
+
+    if (reports.length === 0) {
+        container.innerHTML = "<p>لا توجد بلاغات مسجلة.</p>";
+    } else {
+        reports.forEach(rep => {
+            container.innerHTML += `
+                <div class="report-card">
+                    <div class="title">${rep.title}</div>
+                    <div class="desc">${rep.description}</div>
+                    <div class="date">تاريخ البلاغ: ${rep.date}</div>
+                </div>
+            `;
+        });
+    }
+</script>
+
+</body>
+</html>
