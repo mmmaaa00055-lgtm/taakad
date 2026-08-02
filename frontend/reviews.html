@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>تقييمات المستخدمين</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background: #f0f2f5;
+            direction: rtl;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        .rating {
+            color: #FFD700;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .username {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .comment {
+            color: #444;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>تقييمات المستخدمين</h2>
+
+    <div id="reviews"></div>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const reviewsData = params.get("reviews");
+
+    let reviews = [];
+
+    try {
+        reviews = JSON.parse(reviewsData);
+    } catch {
+        reviews = [];
+    }
+
+    const container = document.getElementById("reviews");
+
+    if (reviews.length === 0) {
+        container.innerHTML = "<p>لا توجد تقييمات حتى الآن.</p>";
+    } else {
+        reviews.forEach(r => {
+            container.innerHTML += `
+                <div class="card">
+                    <div class="rating">${"⭐".repeat(r.rating)}</div>
+                    <div class="username">${r.user}</div>
+                    <div class="comment">${r.comment}</div>
+                </div>
+            `;
+        });
+    }
+</script>
+
+</body>
+</html>
