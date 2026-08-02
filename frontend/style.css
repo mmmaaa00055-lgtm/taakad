@@ -1,72 +1,76 @@
-/* خلفية Cyber Security */
+/* خلفية متحركة Cyber */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    color: #e0e0e0;
-    background: #05080f;
+    background: #020312;
+    color: #fff;
     overflow-x: hidden;
 }
 
-/* خلفية متحركة */
-.cyber-bg {
+/* خلفية خطوط متحركة */
+.cyber-grid {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, rgba(0,0,0,0.9) 70%);
-    animation: pulse 6s infinite alternate;
+    background-image:
+        linear-gradient(#0ff2 1px, transparent 1px),
+        linear-gradient(90deg, #0ff2 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridMove 10s linear infinite;
     z-index: -1;
 }
 
-@keyframes pulse {
-    0% { filter: blur(0px); }
-    100% { filter: blur(4px); }
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 40px 40px; }
 }
 
-/* صندوق الإدخال */
-.center-box {
+/* صندوق الفحص */
+.main-box {
     width: 90%;
-    max-width: 550px;
+    max-width: 600px;
     margin: 120px auto;
-    background: rgba(10, 20, 40, 0.8);
-    padding: 35px;
-    border-radius: 15px;
+    background: rgba(0, 20, 40, 0.8);
+    padding: 40px;
+    border-radius: 18px;
     border: 1px solid #00eaff;
-    box-shadow: 0 0 25px rgba(0,255,255,0.3);
+    box-shadow: 0 0 30px #00eaff55;
     text-align: center;
 }
 
-/* العنوان */
+/* عنوان */
 .title {
-    font-size: 36px;
+    font-size: 40px;
     color: #00eaff;
-    text-shadow: 0 0 15px #00eaff;
+    text-shadow: 0 0 20px #00eaff;
     margin-bottom: 10px;
 }
 
-/* النص تحت العنوان */
+/* نص تحت العنوان */
 .subtitle {
     font-size: 18px;
     color: #bcd;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-/* الإدخال */
-.input-area input {
+/* إدخال */
+input {
     width: 100%;
     padding: 15px;
     font-size: 18px;
     border-radius: 10px;
     border: 1px solid #00eaff;
-    background: #0a1528;
+    background: #07101f;
     color: #fff;
     outline: none;
+    box-shadow: 0 0 10px #00eaff55 inset;
 }
 
-/* زر الفحص */
-.input-area button {
+/* زر */
+button {
     width: 100%;
     margin-top: 20px;
     padding: 15px;
@@ -80,7 +84,35 @@ body {
     transition: 0.3s;
 }
 
-.input-area button:hover {
+button:hover {
     background: #00c4d6;
-    box-shadow: 0 0 20px #00eaff;
+    box-shadow: 0 0 25px #00eaff;
+}
+
+/* بطاقة النتائج */
+.result-card {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+    background: rgba(0, 20, 40, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #00eaff;
+    box-shadow: 0 0 25px #00eaff55;
+}
+
+/* ألوان الحالات */
+.safe {
+    color: #2ecc71;
+    text-shadow: 0 0 10px #2ecc71;
+}
+
+.warning {
+    color: #f1c40f;
+    text-shadow: 0 0 10px #f1c40f;
+}
+
+.danger {
+    color: #e74c3c;
+    text-shadow: 0 0 10px #e74c3c;
 }
